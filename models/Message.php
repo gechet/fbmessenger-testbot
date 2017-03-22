@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\helpers\FacebookAPIHelper;
+use gechet\app\App;
 
 /**
  * Description of Message
@@ -28,12 +29,12 @@ class Message extends Model
                     $answer = $this->message['text'];
                     break;
             }
-            FacebookAPIHelper::call('me/messages', [
+            App::log(FacebookAPIHelper::call('me/messages', [
                 'recipient' => $this->recipient['id'],
                 'message' => [
                     'text' => $this->$answer
                 ],
-            ]);
+            ]));
         }
     }
 }
