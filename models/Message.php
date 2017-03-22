@@ -29,6 +29,12 @@ class Message extends Model
                     $answer = $this->message['text'];
                     break;
             }
+            App::log([
+                'recipient' => $this->sender['id'],
+                'message' => [
+                    'text' => $this->$answer
+                ],
+            ]);
             App::log(FacebookAPIHelper::call('me/messages', [
                 'recipient' => $this->sender['id'],
                 'message' => [
