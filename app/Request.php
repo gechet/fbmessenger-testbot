@@ -29,10 +29,11 @@ class Request
      */
     public function post($name = null)
     {
+        $data = json_decode(file_get_contents('php://input'), true);
         if ($name) {
-            $value = isset($_POST[$name]) ? $_POST[$name] : null;
+            $value = isset($data[$name]) ? $data[$name] : null;
         } else {
-            $value = $_POST;
+            $value = $data;
         }
         return $value ? $this->clearData($value) : null;
     }
