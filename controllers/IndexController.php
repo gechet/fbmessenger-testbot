@@ -30,7 +30,8 @@ class IndexController extends Controller
                 }
                 echo $request['hub_challenge'];
             case 'POST':
-
+                $request = App::$request->post();
+                App::log($request);
 
                 break;
 
