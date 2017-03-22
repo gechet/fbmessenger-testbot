@@ -19,18 +19,15 @@ class IndexController extends Controller
     {
         switch (App::$request->getMethod()) {
             case 'GET':
-                $request = App::$request->get();
-                $log = fopen(__DIR__ . '/log.log', 'a+');
-                fwrite($log, json_encode($request));
-                fclose($log);
-                if (empty($request['hub.mode']) 
-                        || empty($request['hub.verify_token'])
-                        || $request['hub.mode'] != 'subscribe'
-                        || $request['hub.verify_token'] != App::$config['verifyToken']
+                $request = App::$request->get();                
+                if (empty($request['hub_mode']) 
+                        || empty($request['hub_verify_token'])
+                        || $request['hub_mode'] != 'subscribe'
+                        || $request['hub_verify_token'] != App::$config['verifyToken']
                 ) {
                     return false;
                 }
-                return $request['hub.challenge'];
+                return $request['hub_challenge'];
             case 'POST':
 
 
