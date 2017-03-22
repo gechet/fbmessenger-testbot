@@ -15,7 +15,11 @@ class Request
      */
     public function get($name = '')
     {
-        $value = $name && isset($_GET[$name]) ? $_GET[$name] : $_GET;
+        if ($name) {
+            $value = isset($_GET[$name]) ? $_GET[$name] : null;
+        } else {
+            $value = $_GET;
+        }
         return $value ? $this->clearData($value) : null;
     }
 
@@ -25,7 +29,11 @@ class Request
      */
     public function post($name = '')
     {
-        $value = $name && isset($_POST[$name]) ? $_POST[$name] : $_POST;
+        if ($name) {
+            $value = isset($_POST[$name]) ? $_POST[$name] : null;
+        } else {
+            $value = $_POST;
+        }
         return $value ? $this->clearData($value) : null;
     }
     
