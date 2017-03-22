@@ -4,6 +4,7 @@ namespace gechet\controllers;
 
 use gechet\controllers\Controller;
 use gechet\app\App;
+use app\models\Message;
 
 /**
  *
@@ -28,16 +29,24 @@ class IndexController extends Controller
                 ) {
                     return false;
                 }
-                echo $request['hub_challenge'];
+                die($request['hub_challenge']);
             case 'POST':
                 $request = App::$request->post();
                 App::log($request);
-
+                if ($request['object'] == 'page') {
+                    foreach ($request['entry'] as $entry) {
+                        foreach ($entry['messaging'] as $message) {
+                            $messages = new Message($message);
+                            $messages->answer();
+                        }
+                    }
+                }
                 break;
 
             default:
                 break;
         }
+        return;
     }
 
 }
