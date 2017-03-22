@@ -30,7 +30,7 @@ class Message extends Model
                     break;
             }
             App::log(FacebookAPIHelper::call('me/messages', [
-                'recipient' => $this->recipient['id'],
+                'recipient' => $this->sender['id'],
                 'message' => [
                     'text' => $this->$answer
                 ],

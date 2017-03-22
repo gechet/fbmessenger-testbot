@@ -27,7 +27,7 @@ class App
     public static function log($string)
     {
         $log = fopen(__DIR__ . '/app.log', 'a+');
-        fwrite($log, json_encode(['data' => $string, 'config' => App::$config]) . PHP_EOL);
+        fwrite($log, json_encode(['data' => $string]) . PHP_EOL);
         fclose($log);
     }
 

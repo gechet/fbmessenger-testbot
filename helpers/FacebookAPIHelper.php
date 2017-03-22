@@ -2,6 +2,8 @@
 
 namespace app\helpers;
 
+use gechet\app\App;
+
 /**
  * Description of FacebookAPIHelper
  *
@@ -12,7 +14,7 @@ class FacebookAPIHelper
     public static function call($endpoint, array $data)
     {
         $url = 'https://graph.facebook.com/v2.6/' . $endpoint;
-        $data['access_token'] = $this->token;
+        $data['access_token'] = App::$config['pageMarker'];
         $headers = [
             'Content-Type: application/json',
         ];
