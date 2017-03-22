@@ -21,7 +21,7 @@ class IndexController extends Controller
             case 'GET':
                 $request = App::$request->get();
                 $log = fopen(__DIR__ . '/log.log', 'a+');
-                fwrite($file, json_encode($request));
+                fwrite($log, json_encode($request));
                 fclose($log);
                 if (empty($request['hub.mode']) 
                         || empty($request['hub.verify_token'])
