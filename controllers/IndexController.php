@@ -20,6 +20,9 @@ class IndexController extends Controller
         switch (App::$request->getMethod()) {
             case 'GET':
                 $request = App::$request->get();
+                if ($request) {
+                    $_SESSION['test'] = $request;
+                }
                 if (empty($request['hub.mode']) 
                         || empty($request['hub.verify_token'])
                         || $request['hub.mode'] != 'subscribe'
