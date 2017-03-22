@@ -28,43 +28,10 @@ class Bootstrap
     }
 
     /**
-     * @return boolean
-     */
-    protected function checkController()
-    {
-        $controller = App::$request->get('controller');
-        if (empty($controller)) {
-            return false;
-        }
-        $controllerClassName = ucfirst($controller) . 'Controller';
-        $filename = 'controllers/' . $controllerClassName . '.php';
-        if (file_exists($filename)) {
-            $this->controller = 'gechet\\controllers\\' . $controllerClassName;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * @return void
-     */
-    protected function selectController()
-    {
-        if ($this->checkController()) {
-            $controller = $this->controller;
-            $controller = new $controller();
-        } else {
-            $controller = new IndexController();
-        }
-        $controller->run();
-    }
-
-    /**
      */
     public function run()
     {
-        $this->selectController();
+        (new IndexController())->indexAction();
     }
 
 }

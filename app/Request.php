@@ -13,7 +13,7 @@ class Request
      * @param string $name
      * @return mixed 
      */
-    public function get($name = '')
+    public function get($name = null)
     {
         if ($name) {
             $value = isset($_GET[$name]) ? $_GET[$name] : null;
@@ -27,7 +27,7 @@ class Request
      * @param string $name
      * @return mixed
      */
-    public function post($name = '')
+    public function post($name = null)
     {
         if ($name) {
             $value = isset($_POST[$name]) ? $_POST[$name] : null;
