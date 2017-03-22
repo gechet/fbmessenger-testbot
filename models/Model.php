@@ -15,9 +15,7 @@ abstract class Model
     {
         App::log($config);
         foreach ($config as $key => $value) {
-            if (isset($this->$key)) {
-                $this->$key = $value;
-            }
+            $this->$key = $value;
         }
     }
 }
