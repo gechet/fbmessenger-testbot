@@ -20,7 +20,6 @@ class Message extends Model
     
     public function answer()
     {
-        App::log($this->message);
         if ($this->message && $this->message['text']) {
             switch ($this->message['text']) {
                 case 'test':
