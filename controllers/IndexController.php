@@ -35,7 +35,6 @@ class IndexController extends Controller
                 if ($request['object'] == 'page') {
                     foreach ($request['entry'] as $entry) {
                         foreach ($entry['messaging'] as $message) {
-                            App::log($message);
                             $messages = new Message($message);
                             $messages->answer();
                         }
