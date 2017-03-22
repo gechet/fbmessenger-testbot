@@ -21,7 +21,7 @@ class Bootstrap
         if (!is_object(App::$request)) {
             App::$request = new Request();
         }
-        App::$config = __DIR__ . '/../config/main.php';
+        App::$config = require __DIR__ . '/../config/main.php';
     }
 
     /**
@@ -33,9 +33,6 @@ class Bootstrap
         if (empty($controller)) {
             return false;
         }
-        /*
-         * Тут по хорошему надо сделать полный разбор имени, но пока не будем заморачиваться
-         */
         $controllerClassName = ucfirst($controller) . 'Controller';
         $filename = 'controllers/' . $controllerClassName . '.php';
         if (file_exists($filename)) {
