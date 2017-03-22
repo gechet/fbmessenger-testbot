@@ -35,9 +35,9 @@ class IndexController extends Controller
                 if ($request['object'] == 'page') {
                     foreach ($request['entry'] as $entry) {
                         foreach ($entry['messaging'] as $post) {
-                            if ($post['message']) {
+                            if (!empty($post['message'])) {
                                 (new Message($post))->answer();
-                            } elseif ($post['postback']) {
+                            } elseif (!empty($post['postback'])) {
                                 
                             }
                         }

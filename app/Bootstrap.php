@@ -23,8 +23,6 @@ class Bootstrap
             App::$request = new Request();
         }
         App::$config = require __DIR__ . '/../config/main.php';
-            
-        
     }
 
     /**
