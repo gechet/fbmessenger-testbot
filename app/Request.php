@@ -16,7 +16,7 @@ class Request
     public function get($name = '')
     {
         $value = $name && isset($_GET[$name]) ? $_GET[$name] : $_GET;
-        return $this->clearData($value);
+        return $value ? $this->clearData($value) : null;
     }
 
     /**
@@ -26,7 +26,7 @@ class Request
     public function post($name = '')
     {
         $value = $name && isset($_POST[$name]) ? $_POST[$name] : $_POST;
-        return $this->clearData($value);
+        return $value ? $this->clearData($value) : null;
     }
     
     protected function clearData($data)
@@ -36,7 +36,7 @@ class Request
         }
         $temp = [];
         foreach ($data as $key => $value) {
-            $temp[$key] = htmlspecialchars($value);
+            $temp[$key] = $this->clearData($value);
         }
         return $temp;
     }
