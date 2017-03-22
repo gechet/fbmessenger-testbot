@@ -100,14 +100,15 @@ class Message extends Model
     
     public function formatConnect()
     {
-        $this->formatAttachment(['buttons' => [
-            [
-                'title' => 'Login',
-                'subtitle' => 'If you want access to your personal functions, you should login in system',
-                'image_url' => 'http://antagosoft.com/img/antago_logo-1.png',
-                'type' => 'account_link',
-                'url' => 'https://fbbot.antagosoft.com/auth.php',
-            ]
+        $this->formatAttachment([
+            'title' => 'Login',
+            'subtitle' => 'If you want access to your personal functions, you should login in system',
+            'image_url' => 'http://antagosoft.com/img/antago_logo-1.png',
+            'buttons' => [
+                [                
+                    'type' => 'account_link',
+                    'url' => 'https://fbbot.antagosoft.com/auth.php',
+                ]
         ]]);
     }
 }
