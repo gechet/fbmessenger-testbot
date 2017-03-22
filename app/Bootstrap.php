@@ -21,6 +21,7 @@ class Bootstrap
         if (!is_object(App::$request)) {
             App::$request = new Request();
         }
+        App::$config = __DIR__ . '/../config/main.php';
     }
 
     /**

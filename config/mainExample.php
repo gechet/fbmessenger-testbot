@@ -2,5 +2,6 @@
 
 return [
     'verifyToken' => '',
+    'pageMarker' => '',
 ];
 
