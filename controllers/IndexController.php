@@ -32,10 +32,10 @@ class IndexController extends Controller
                 die($request['hub_challenge']);
             case 'POST':
                 $request = App::$request->post();
-                App::log($request);
                 if ($request['object'] == 'page') {
                     foreach ($request['entry'] as $entry) {
                         foreach ($entry['messaging'] as $message) {
+                            App::log($message);
                             $messages = new Message($message);
                             $messages->answer();
                         }
