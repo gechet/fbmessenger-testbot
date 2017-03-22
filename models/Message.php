@@ -23,18 +23,57 @@ class Message extends Model
         if ($this->message && $this->message['text']) {
             switch ($this->message['text']) {
                 case 'test':
-                    $answer = 'Иди тестируй в свой двор';
+                    $answer = $this->formatPlainText('Yeah, i\'m online');
+                    break;
+                case 'show menu':
+                    $answer = $this->formatAttachment([
+                        [
+                            'title' => 'OMG! This is THE MENU',
+                            'subtitle' => 'And it\'s awesome subtitle',
+                            'image_url' => 'http://antagosoft.com/img/antago_logo-1.png',
+                            'buttons' => [
+                                [
+                                    'type' => 'web_url',
+                                    'url' => 'http://antagosoft.com/',
+                                    'title' => 'Yeah, this guys'
+                                ],
+                                [
+                                    'type' => 'postback',
+                                    'payload' => 'some data',
+                                    'title' => 'Call Postback'
+                                ],
+                            ],
+                        ],                        
+                    ]);
                     break;
                 default :
-                    $answer = $this->message['text'];
+                    $answer = $this->formatPlainText('I guess you said something wrong. Try again!');
                     break;
             }
             App::log(FacebookAPIHelper::call('me/messages', [
                 'recipient' => ['id' => $this->sender['id']],
-                'message' => [
-                    'text' => $answer
-                ],
+                'message' => $answer,
             ]));
         }
+    }
+    
+    public function formatPlainText($message)
+    {
+        return [
+            'text' => $message
+        ];
+    }
+    
+    public function formatAttachment($elements)
+    {
+        return [
+            'attachment' => [
+                'type' => 'template',
+                'payload' => [
+                    'template_type' => 'generic',
+                    'elements' => $elements,
+                ],
+            ]
+        ];
     }
 }

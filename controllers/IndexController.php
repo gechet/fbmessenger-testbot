@@ -34,9 +34,12 @@ class IndexController extends Controller
                 $request = App::$request->post();
                 if ($request['object'] == 'page') {
                     foreach ($request['entry'] as $entry) {
-                        foreach ($entry['messaging'] as $message) {
-                            $messages = new Message($message);
-                            $messages->answer();
+                        foreach ($entry['messaging'] as $post) {
+                            if ($post['message']) {
+                                (new Message($message))->answer();
+                            } elseif ($post['postback']) {
+                                
+                            }
                         }
                     }
                 }
