@@ -18,11 +18,13 @@ class Bootstrap
 
     public function __construct()
     {
+        session_start(session_name('fb_bot'));
         if (!is_object(App::$request)) {
             App::$request = new Request();
         }
         App::$config = require __DIR__ . '/../config/main.php';
-        session_start(session_name('fb_bot'));
+            
+        
     }
 
     /**
