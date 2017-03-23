@@ -22,6 +22,7 @@ class LoginController extends Controller
                 break;
             case 'POST':
                 $request = App::$request->post();
+                App::log($request);
                 $code = false;
                 if (!empty($request['login']) 
                         && !empty($request['password'])
