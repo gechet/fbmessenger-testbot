@@ -30,7 +30,7 @@ class IndexController extends Controller
                 }
                 die($request['hub_challenge']);
             case 'POST':
-                $request = App::$request->post();
+                $request = App::$request->body();
                 App::log($request);
                 if ($request['object'] == 'page') {
                     foreach ($request['entry'] as $entry) {

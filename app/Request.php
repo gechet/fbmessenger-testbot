@@ -15,21 +15,43 @@ class Request
      */
     public function get($name = null)
     {
-        if ($name) {
-            $value = isset($_GET[$name]) ? $_GET[$name] : null;
-        } else {
-            $value = $_GET;
-        }
-        return $value ? $this->clearData($value) : null;
+        return $this->getData('get', $name);
     }
 
     /**
      * @param string $name
      * @return mixed
      */
+    public function body($name = null)
+    {
+        return $this->getData('body', $name);
+    }
+    
+    /**
+     * @param string $name
+     * @return mixed
+     */
     public function post($name = null)
     {
-        $data = json_decode(file_get_contents('php://input'), true);
+        return $this->getData('post', $name);
+    }
+    
+    protected function getData($type, $name)
+    {
+        switch ($type) {
+            case 'get':
+                $data = $_GET;
+                break;
+            case 'post':
+                $data = $_POST;
+                break;
+            case 'body':
+                $data = json_decode(file_get_contents('php://input'), true);
+                break;
+            default :
+                $data = $_GET;
+                break;
+        }
         if ($name) {
             $value = isset($data[$name]) ? $data[$name] : null;
         } else {
