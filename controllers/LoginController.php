@@ -27,9 +27,10 @@ class LoginController extends Controller
                         && !empty($request['password'])
                         && $request['login'] == 'root'
                         && $request['password'] == '111111'
-                ) {
+                ) {                    
                     //We should store this code with user, because we need link messenger id with our account id during account_linking process
                     $code = uniqid();
+                    $_SESSION['code'] = $code;
                 }
                 $redirectUrl = App::$request->get('redirect_uri');
                 header('Location: ' .  $redirectUrl . ($code ? '&authorization_code=' . $code : ''));
