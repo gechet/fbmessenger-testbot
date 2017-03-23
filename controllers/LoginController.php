@@ -30,9 +30,8 @@ class LoginController extends Controller
                 ) {
                     $response['code'] = uniqid();
                 }
-                $response['redirectUrl'] = App::$request->get('redirect_uri');
-                $response['linkingToken'] = App::$request->get('account_linking_token');
-                header('Location: https://www.facebook.com/messenger_platform/account_linking?' . http_build_query($response));
+                $redirectUrl = App::$request->get('redirect_uri');
+                header('Location: ' .  $redirectUrl . http_build_query($response));
                 break;
 
             default:
