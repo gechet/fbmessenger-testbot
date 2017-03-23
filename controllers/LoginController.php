@@ -22,16 +22,16 @@ class LoginController extends Controller
                 break;
             case 'POST':
                 $request = App::$request->post();
-                $response = [];
+                $code = false;
                 if (!empty($request['login']) 
-                        && !empty($request['login'])
+                        && !empty($request['password'])
                         && $request['login'] == 'root'
                         && $request['password'] == '111111'
                 ) {
-                    $response['code'] = uniqid();
+                    $code = uniqid();
                 }
                 $redirectUrl = App::$request->get('redirect_uri');
-                header('Location: ' .  $redirectUrl . http_build_query($response));
+                header('Location: ' .  $redirectUrl . ($code ? '&authorization_code=' . $code : ''));
                 break;
 
             default:
