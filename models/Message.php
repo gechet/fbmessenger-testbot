@@ -54,6 +54,10 @@ class Message extends Model
                     $answer = $this->formatAnswer('I guess you said something wrong. Try again!', self::FORMAT_TEXT);
                     break;
             }
+            App::log([
+                'recipient' => ['id' => $this->sender['id']],
+                'message' => $answer,
+            ]);
             App::log(FacebookAPIHelper::call('me/messages', [
                 'recipient' => ['id' => $this->sender['id']],
                 'message' => $answer,
