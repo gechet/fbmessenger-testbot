@@ -18,7 +18,7 @@ class IndexController extends Controller
     {
         switch (App::$request->getMethod()) {
             case 'GET':
-                echo file_get_contents(__DIR__ . '/../views/auth.php');
+                echo file_get_contents(__DIR__ . '/../views/auth.html');
                 break;
             case 'POST':
                 $request = App::$request->post();
