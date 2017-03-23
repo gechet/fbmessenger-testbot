@@ -14,6 +14,8 @@ abstract class Controller
     abstract public function indexAction();
 
     /**
+     * Select action on controller
+     * If there is no such action - default indexAction will work
      */
     protected function selectAction()
     {
@@ -27,7 +29,7 @@ abstract class Controller
     }
 
     /**
-     * 
+     * Controller entry point
      */
     public function run()
     {

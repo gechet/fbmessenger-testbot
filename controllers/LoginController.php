@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
 
     /**
-     * 
+     * Login action
      */
     public function indexAction()
     {
@@ -22,13 +22,13 @@ class LoginController extends Controller
                 break;
             case 'POST':
                 $request = App::$request->post();
-                App::log($request);
                 $code = false;
                 if (!empty($request['login']) 
                         && !empty($request['password'])
                         && $request['login'] == 'root'
                         && $request['password'] == '111111'
                 ) {
+                    //We should store this code with user, because we need link messenger id with our account id during account_linking process
                     $code = uniqid();
                 }
                 $redirectUrl = App::$request->get('redirect_uri');

@@ -13,7 +13,7 @@ class IndexController extends Controller
 {
 
     /**
-     * 
+     * Basic webhook action
      */
     public function indexAction()
     {

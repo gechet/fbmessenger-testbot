@@ -10,6 +10,7 @@ class Request
 {
 
     /**
+     * Get GET data
      * @param string $name
      * @return mixed 
      */
@@ -19,6 +20,7 @@ class Request
     }
 
     /**
+     * Get body request data
      * @param string $name
      * @return mixed
      */
@@ -28,6 +30,7 @@ class Request
     }
     
     /**
+     * Get POST data
      * @param string $name
      * @return mixed
      */
@@ -36,6 +39,12 @@ class Request
         return $this->getData('post', $name);
     }
     
+    /**
+     * Get data from selected source by name or just all data
+     * @param string $type
+     * @param string $name
+     * @return string|array
+     */
     protected function getData($type, $name)
     {
         switch ($type) {
@@ -60,6 +69,11 @@ class Request
         return $value ? $this->clearData($value) : null;
     }
     
+    /**
+     * Clear data from html special chars
+     * @param array|string $data
+     * @return array|string
+     */
     protected function clearData($data)
     {
         if (!is_array($data)) {
@@ -72,6 +86,10 @@ class Request
         return $temp;
     }
     
+    /**
+     * Get current method
+     * @return string
+     */
     public function getMethod()
     {
         if (isset($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'])) {
@@ -85,6 +103,10 @@ class Request
         return 'GET';
     }
     
+    /**
+     * Get route to current action
+     * @return array
+     */
     public function getRoute()
     {
         $route = $this->get('r');
