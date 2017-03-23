@@ -66,8 +66,7 @@ class Message extends Model
         if (!in_array($type, [self::FORMAT_ATTACHMENT, self::FORMAT_LOGIN, self::FORMAT_TEXT])) {
             throw new \Exception();
         }
-        $loged = false;
-        if (!$loged) {
+        if (!empty($_SESSION['code'])) {
             return $this->formatConnect();
         }
         switch ($type) {
