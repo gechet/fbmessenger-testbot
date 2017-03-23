@@ -8,7 +8,7 @@ use gechet\app\App;
  *
  * @author Serhii Chepela <scheoriginal@gmail.com>
  */
-class IndexController extends Controller
+class LoginController extends Controller
 {
 
     /**
