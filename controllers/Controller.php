@@ -17,21 +17,21 @@ abstract class Controller
      */
     protected function selectAction()
     {
-        $action = App::$request->get('action') . 'Action';
+        $action = App::$request->getRoute()['action'] . 'Action';
 
         if (method_exists($this, $action)) {
-            $this->$action();
+            return $this->$action();
         } else {
-            $this->indexAction();
+            return $this->indexAction();
         }
     }
 
     /**
-     * Базовый класс контроллера
+     * 
      */
     public function run()
     {
-        $this->selectAction();
+        return $this->selectAction();
     }
 
 }

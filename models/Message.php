@@ -108,7 +108,7 @@ class Message extends Model
                 'buttons' => [
                     [                
                         'type' => 'account_link',
-                        'url' => 'https://fbbot.antagosoft.com/auth.php',
+                        'url' => 'https://fbbot.antagosoft.com/?r=login',
                     ],
                 ],
             ]

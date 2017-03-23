@@ -2,7 +2,6 @@
 
 namespace gechet\controllers;
 
-use gechet\controllers\Controller;
 use gechet\app\App;
 use app\models\Message;
 

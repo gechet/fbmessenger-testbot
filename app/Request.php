@@ -63,6 +63,17 @@ class Request
         return 'GET';
     }
     
+    public function getRoute()
+    {
+        $route = $this->get('r');
+        if (!$route) {
+            return ['controller' => 'index', 'action' => 'index'];
+        }
+        $route = explode('/', $route);
+        return ['controller' => $route[0], 'action' => isset($route[1]) ? $route[1] : 'index'];
+    }
+
+    
     /**
      * Returns whether this is a GET request.
      * @return bool whether this is a GET request.
